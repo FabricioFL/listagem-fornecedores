@@ -1,0 +1,30 @@
+.bg-1
+{
+    background-color: #29314b;
+}
+
+.bg-2
+{
+    background-color: #3e4a72;
+}
+
+.bg-3
+{
+    background-color: #6c7db1;
+}
+
+.sidebar
+{
+    width: 20rem;
+    padding-left: 3rem;
+}
+
+.border-button
+{
+    border-style: hidden;
+}
+
+.bg-button
+{
+    background: #4d77d1;
+}

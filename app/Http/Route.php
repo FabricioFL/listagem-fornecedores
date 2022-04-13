@@ -15,13 +15,10 @@ class Route
         }
     }
 
-    public static function render(string $url, string $view)
+    public static function render(string $view)
     {
-        if($_SERVER['REQUEST_URI'] == $url && $_SERVER['REQUEST_METHOD'] == 'GET')
-        {
-            header('location: ../../resources/view/' .$view.'.php');
-            die();
-        }
+        header('location: ../../resources/view/' .$view.'.php');
+        die();
     }
 
     public static function redirect(string $url)
