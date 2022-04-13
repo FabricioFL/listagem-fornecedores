@@ -4,8 +4,6 @@ namespace App\Database;
 
 use PDO;
 
-
-
 class Database
 {
     private static pdo $db;
@@ -23,19 +21,19 @@ class Database
 
         $query = self::$db->prepare('CREATE TABLE IF NOT EXISTS empresas (
             id bigint primary key AUTO_INCREMENT,
-            uf varchar(255) unique not null,
+            uf varchar(255) not null,
             nome_fantasia varchar(255) unique not null,
-            cnpj varchar(14) unique not null
+            cnpj varchar(30) unique not null
         )')->execute();
 
         $query = self::$db->prepare('CREATE TABLE IF NOT EXISTS fornecedores (
             id bigint primary key AUTO_INCREMENT,
             empresa varchar(255) not null,
             nome varchar(255) unique not null,
-            cnpj varchar(14) unique,
+            cnpj varchar(30) unique,
             cpf varchar(11) unique,
-            rg varchar(14) unique,
-            telefone varchar(20) unique not null,
+            rg varchar(30) unique,
+            telefone varchar(30) unique not null,
             datahora_cadastro datetime not null,
             foreign key (empresa) references empresas(nome_fantasia)
         )')->execute();
@@ -64,18 +62,18 @@ class Database
     {
         self::start();
         $query = self::$db->prepare('SELECT * FROM empresas WHERE nome_fantasia = :_fantasyname');
-        $query->bindValue(':_fantasy_name', $nomeFantasia);
+        $query->bindValue(':_fantasyname', $nomeFantasia);
         $query->execute();
-        $data = $query->fetchAll(PDO::FETCH_ASSOC);
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
 
-    public static function createProvider(string $empresa, string $nome, string $cnpj, string $cpf, string $rg, string $telefone) : void
+    public static function createProvider(string $empresa, string $nome, mixed $cnpj = null, mixed $cpf = null, mixed $rg = null, string $telefone) : void
     {
         self::start();
         date_default_timezone_set('America/Sao_Paulo');
-        $query = self::$db->prepare('INSERT IGNORE INTO providers (id, empresa, nome, cnpj, cpf, rg, telefone, datahora_cadastro) VALUES (
+        $query = self::$db->prepare('INSERT IGNORE INTO fornecedores (id, empresa, nome, cnpj, cpf, rg, telefone, datahora_cadastro) VALUES (
             null,
             :_empresa,
             :_nome,
@@ -102,7 +100,17 @@ class Database
         }
     }
 
-    public static function getProviderByName(string $nome)
+    public static function getAllProviders() : mixed
+    {
+        self::start();
+        $query = self::$db->prepare('SELECT * FROM fornecedores');
+        $query->execute();
+        $data = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        return $data;
+    }
+
+    public static function getProviderByName(string $nome) : mixed
     {
         self::start();
         $query = self::$db->prepare('SELECT * FROM providers WHERE nome = :_nome');
@@ -114,7 +122,7 @@ class Database
     }
 
 
-    public static function getProviderByCNPJ(string $cnpj)
+    public static function getProviderByCNPJ(string $cnpj) : mixed
     {
         self::start();
         $query = self::$db->prepare('SELECT * FROM providers WHERE cnpj = :_cnpj');
@@ -125,7 +133,7 @@ class Database
         return $data;
     }
 
-    public static function getProviderByCPF(string $cpf)
+    public static function getProviderByCPF(string $cpf) : mixed
     {
         self::start();
         $query = self::$db->prepare('SELECT * FROM providers WHERE cpf = :_cpf');
@@ -157,7 +165,7 @@ class Database
         }
     }
 
-    public static function getUser(string $username)
+    public static function getUser(string $username) : mixed
     {
         self::start();
         $query = self::$db->prepare('SELECT * FROM users WHERE _username = :_username');

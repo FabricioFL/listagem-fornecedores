@@ -9,8 +9,12 @@
     <link rel="stylesheet" href="../css/custom.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <?php
+        require_once '../../vendor/autoload.php';
         use App\Http\Route;
         use App\Controllers\LoginController;
+        use App\Controllers\ProviderController;
+
+        ProviderController::register();
         session_start();
             if($_SESSION['login'] != true)
             {
@@ -43,14 +47,14 @@
         </aside>
         <div class="d-grid justify-content-center mt-5 alert bg-3 text-light lead w-50 mx-auto">
             <h2>Cadastrar Fornecedor:</h2>
-            <form>
+            <form method="POST">
                 <div class="mb-3">
                     <label for="fornecedor-empresa" class="form-label">Empresa</label>
                     <input type="text" class="form-control" id="fornecedor-empresa" name="fornecedor-empresa">
                 </div>
                 <div class="mb-3">
                     <label for="fornecedor-nome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="fornecedor-nome" name="fonecedor-nome">
+                    <input type="text" class="form-control" id="fornecedor-nome" name="fornecedor-nome">
                 </div>
                 <div class="mb-3">
                     <label for="fornecedor-cnpj" class="form-label" id="label-cnpj">cnpj</label>
@@ -69,11 +73,11 @@
                     <input type="text" class="form-control" id="fornecedor-cnpj" name="fornecedor-telefone">
                 </div>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" class="fornecedor-pjpf" id="fornecedor-ispf" name="fornecedor-ispf" value="true">
+                    <input type="checkbox" class="form-check-input" id="fornecedor-ispf" name="fornecedor-ispf" value="true">
                     <label class="form-check-label" for="fornecedor-ispf">É pessoa física</label>
                 </div>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" class="fornecedor-pjpf" id="fornecedor-pfisofage" name="fornecedor-ispf" value="true">
+                    <input type="checkbox" class="form-check-input" id="fornecedor-pfisofage" name="fornecedor-pfisofage" value="true">
                     <label class="form-check-label" for="fornecedor-isofage" id="label-pfisofage">É maior de idade</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
