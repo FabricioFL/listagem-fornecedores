@@ -13,6 +13,8 @@ setInterval(() => {
         document.getElementById('fornecedor-rg').style.display = 'block';
         document.getElementById('label-pfisofage').style.display = 'block';
         document.getElementById('fornecedor-pfisofage').style.display = 'block';
+        document.getElementById('fornecedor-selectestado').style.display = 'block';
+        document.getElementById('fornecedor-estadolabel').style.display = 'block';
     }else
     {
         document.getElementById('label-cnpj').style.display = 'block';
@@ -23,6 +25,8 @@ setInterval(() => {
         document.getElementById('fornecedor-rg').style.display = 'none';
         document.getElementById('label-pfisofage').style.display = 'none';
         document.getElementById('fornecedor-pfisofage').style.display = 'none';
+        document.getElementById('fornecedor-selectestado').style.display = 'none';
+        document.getElementById('fornecedor-estadolabel').style.display = 'none';
     }
 
 }, 100);

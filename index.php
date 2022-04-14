@@ -40,12 +40,6 @@ Route::get('/cadastrar-fornecedores', function(){
 
 });
 
-Route::get('/listar-empresas', function(){
-
-    Route::render('listarEmpresas');
-
-});
-
 Route::get('/listar-fornecedores', function(){
 
     Route::render('listarFornecedores');

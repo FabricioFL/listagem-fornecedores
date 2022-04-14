@@ -34,9 +34,6 @@
                 <a class="text-decoration-none text-light" href="/cadastrar-fornecedores">Cadastrar fornecedores</a>
             </div>
             <div class="my-5 lead">
-                <a class="text-decoration-none text-light" href="/listar-empresas">Listar empresas</a>
-            </div>
-            <div class="my-5 lead">
                 <a class="text-decoration-none text-light" href="/listar-fornecedores">Listar fornecedores</a>
             </div>
             <div class="my-5 lead">
@@ -45,7 +42,7 @@
         </aside>
         <section>
             <div class="d-grid justify-content-center mt-5 alert bg-3 text-light lead w-50 mx-auto">
-                <h2>Cadastrar Empresa:</h2>
+                <h2 class="display-6 mb-3">Cadastrar Empresa:</h2>
                 <form method="POST">
                     <div class="mb-3">
                         <label for="empresa-uf" class="form-label">UF</label>

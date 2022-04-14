@@ -33,9 +33,15 @@ class Database
             cnpj varchar(30) unique,
             cpf varchar(11) unique,
             rg varchar(30) unique,
-            telefone varchar(30) unique not null,
             datahora_cadastro datetime not null,
             foreign key (empresa) references empresas(nome_fantasia)
+        )')->execute();
+
+        $query = self::$db->prepare('CREATE TABLE IF NOT EXISTS telefones (
+            id bigint primary key AUTO_INCREMENT,
+            proprietario varchar(255) not null,
+            telefone varchar(255) unique not null,
+            foreign key (proprietario) references fornecedores(nome)
         )')->execute();
     }
 
@@ -58,29 +64,28 @@ class Database
         }
     }
 
-    public static function getCompany(string $nomeFantasia)
+    public static function getCompany(string $cnpj)
     {
         self::start();
-        $query = self::$db->prepare('SELECT * FROM empresas WHERE nome_fantasia = :_fantasyname');
-        $query->bindValue(':_fantasyname', $nomeFantasia);
+        $query = self::$db->prepare('SELECT * FROM empresas WHERE cnpj = :_cnpj');
+        $query->bindValue(':_cnpj', $cnpj);
         $query->execute();
         $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
 
-    public static function createProvider(string $empresa, string $nome, mixed $cnpj = null, mixed $cpf = null, mixed $rg = null, string $telefone) : void
+    public static function createProvider(string $empresa, string $nome, mixed $cnpj = null, mixed $cpf = null, mixed $rg = null) : void
     {
         self::start();
         date_default_timezone_set('America/Sao_Paulo');
-        $query = self::$db->prepare('INSERT IGNORE INTO fornecedores (id, empresa, nome, cnpj, cpf, rg, telefone, datahora_cadastro) VALUES (
+        $query = self::$db->prepare('INSERT IGNORE INTO fornecedores (id, empresa, nome, cnpj, cpf, rg, datahora_cadastro) VALUES (
             null,
             :_empresa,
             :_nome,
             :_cnpj,
             :_cpf,
             :_rg,
-            :_telefone,
             :_datahora_cadastro
         )');
         $query->bindValue(':_empresa', $empresa);
@@ -88,13 +93,12 @@ class Database
         $query->bindValue(':_cnpj', $cnpj);
         $query->bindValue(':_cpf', $cpf);
         $query->bindValue(':_rg', $rg);
-        $query->bindValue(':_telefone', $telefone);
-        $query->bindValue(':_datahora_cadastro', date('Y-m-d H:i:s'));
-        if($empresa != null && $nome != null && $telefone != null && $cnpj != null && $cpf == null && $rg == null)
+        $query->bindValue(':_datahora_cadastro', date('Y-m-d / H:i:s'));
+        if($empresa != null && $nome != null && $cnpj != null && $cpf == null && $rg == null)
         {
             $query->execute();
         }
-        else if($empresa != null && $nome != null && $telefone != null && $cnpj == null && $cpf != null && $rg != null)
+        else if($empresa != null && $nome != null && $cnpj == null && $cpf != null && $rg != null)
         {
             $query->execute();
         }

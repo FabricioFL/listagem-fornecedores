@@ -31,26 +31,23 @@
                 <a class="text-decoration-none text-light" href="/cadastrar-fornecedores">Cadastrar fornecedores</a>
             </div>
             <div class="my-5 lead">
-                <a class="text-decoration-none text-light" href="/listar-empresas">Listar empresas</a>
-            </div>
-            <div class="my-5 lead">
                 <a class="text-decoration-none text-light" href="/listar-fornecedores">Listar fornecedores</a>
             </div>
             <div class="my-5 lead">
                 <a class="text-decoration-none text-light" href="/logout">Sair</a>
             </div>
         </aside>
-        <section>
-            <div class="d-flex justify-content-center mt-5 alert bg-3 text-light lead w-50 mx-auto" role="alert">
-                <p>Seja bem-vido(a)!</p>
+        <section class="container p-5">
+            <div class="d-flex justify-content-center mt-5 alert bg-3 text-light lead w-75 mx-auto" role="alert">
+                <h2 class="display-6">Seja bem-vido(a)!</h2>
             </div>
-            <div class="d-grid justify-content-center mt-5 alert bg-3 text-light lead w-50 mx-auto">
+            <div class="d-grid justify-content-center mt-5 alert bg-3 text-light lead w-75 mx-auto">
                 <h3 class="display-6 text-center">
                     features:
                 </h3>
                 <p class="mt-3">
-                    🟢 Cadastro e listagem de empresas<br>
-                    🟢 Cadastro e listagem de fornecedores<br>
+                    🟢 Cadastro de empresas<br>
+                    🟢 Cadastro e listagem de fornecedores relacionados a uma empresa<br>
                     🟢 Filtros de pesquisa
                 </p>
             </div>

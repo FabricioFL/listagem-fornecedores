@@ -15,29 +15,66 @@ class ProviderController
     {
         if($_POST != null)
         {
-            $empresa = $_POST['fornecedor-empresa'];
+            $dadosEmpresa = Database::getCompany($_POST['fornecedor-cnpj']);
+            $empresa = $dadosEmpresa['nome_fantasia'];
             $nome = $_POST['fornecedor-nome'];
             $cnpj = $_POST['fornecedor-cnpj'];
             $cpf = $_POST['fornecedor-cpf'];
             $rg = $_POST['fornecedor-rg'];
             $telefone = $_POST['fornecedor-telefone'];
-            $dadosEmpresa = Database::getCompany($empresa);
             if($_POST['fornecedor-ispf'] == true && $dadosEmpresa['uf'] != 'PR')
             {
 
-                Database::createProvider($empresa, $nome, null, $cpf, $rg, $telefone);
+                Database::createProvider($empresa, $nome, null, $cpf, $rg);
 
+            }else if($_POST['fornecedor-ispf'] != true && $empresa == null)
+            {
+                Database::createProvider('Profissional autônomo', $nome, $cnpj, null, null);
             }else if($_POST['fornecedor-ispf'] != true)
             {
-
-                Database::createProvider($empresa, $nome, $cnpj, null, null, $telefone);
+                Database::createProvider($empresa, $nome, $cnpj, null, null);
 
             }else if($_POST['fornecedor-ispf'] == true && $dadosEmpresa['uf'] == 'PR' && $_POST['fornecedor-pfisofage'] == true)
             {
 
-                Database::createProvider($empresa, $nome, null, $cpf, $rg, $telefone);
+                Database::createProvider($empresa, $nome, null, $cpf, $rg);
 
             }
         }
+    }
+
+    public static function listProviders()
+    {
+        $providerData = Database::getAllProviders();
+
+        echo '<div class="row w-50">';
+        foreach($providerData as $key => $value)
+        {
+            echo '<div class="col grid justify-content-center bg-3 p-3 m-3 rounded">';
+            echo '<div class="text-light display-6 mb-3"><b>Fornecedor</b></div>';
+            echo '<div class="text-light lead"><b>Empresa:</b><p>'.$value['empresa'].'</p></div>';
+            echo '<div class="text-light lead"><b>Nome:</b><p>'.$value['nome'].'</p></div>';
+            echo '<div class="text-light lead"><b>cnpj:</b><p>'.$value['cnpj'].'</p></div>';
+            echo '<div class="text-light lead"><b>Telefone:</b><p>'.$value['telefone'].'</p></div>';
+            echo '<div class="text-light lead"><b>Data/Hora:</b><p>'.$value['datahora_cadastro'].'</p></div>';
+            echo '</div>';
+        }
+        echo '</div>';
+    }
+
+
+    public static function searchProviderByName()
+    {
+        //
+    }
+
+    public static function searchProviderByCNPJ()
+    {
+        //
+    }
+
+    public static function searchProviderByCPF()
+    {
+        //
     }
 }
