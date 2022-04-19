@@ -4,7 +4,7 @@
 
 ## funcionalidades
 
-<br.>
+<br>
 
 >### cadastro de empresas
 
