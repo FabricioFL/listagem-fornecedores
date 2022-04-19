@@ -19,27 +19,9 @@ class ProviderController
             $empresa = $dadosEmpresa['nome_fantasia'];
             $nome = $_POST['fornecedor-nome'];
             $cnpj = $_POST['fornecedor-cnpj'];
-            $cpf = $_POST['fornecedor-cpf'];
-            $rg = $_POST['fornecedor-rg'];
             $telefone = $_POST['fornecedor-telefone'];
-            if($_POST['fornecedor-ispf'] == true && $dadosEmpresa['uf'] != 'PR')
-            {
-
-                Database::createProvider($empresa, $nome, null, $cpf, $rg);
-
-            }else if($_POST['fornecedor-ispf'] != true && $empresa == null)
-            {
-                Database::createProvider('Profissional autônomo', $nome, $cnpj, null, null);
-            }else if($_POST['fornecedor-ispf'] != true)
-            {
-                Database::createProvider($empresa, $nome, $cnpj, null, null);
-
-            }else if($_POST['fornecedor-ispf'] == true && $dadosEmpresa['uf'] == 'PR' && $_POST['fornecedor-pfisofage'] == true)
-            {
-
-                Database::createProvider($empresa, $nome, null, $cpf, $rg);
-
-            }
+            Database::createProvider($empresa, $nome, $cnpj, null, null);
+            Database::addPhoneToProvider($nome, $telefone);
         }
     }
 

@@ -48,7 +48,6 @@
                 <p class="mt-3">
                     🟢 Cadastro de empresas<br>
                     🟢 Cadastro e listagem de fornecedores relacionados a uma empresa<br>
-                    🟢 Filtros de pesquisa
                 </p>
             </div>
         </section>

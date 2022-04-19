@@ -30,9 +30,7 @@ class Database
             id bigint primary key AUTO_INCREMENT,
             empresa varchar(255) not null,
             nome varchar(255) unique not null,
-            cnpj varchar(30) unique,
-            cpf varchar(11) unique,
-            rg varchar(30) unique,
+            cnpj varchar(30) unique not null,
             datahora_cadastro datetime not null,
             foreign key (empresa) references empresas(nome_fantasia)
         )')->execute();
@@ -75,30 +73,35 @@ class Database
         return $data;
     }
 
-    public static function createProvider(string $empresa, string $nome, mixed $cnpj = null, mixed $cpf = null, mixed $rg = null) : void
+    public static function createProvider(string $empresa, string $nome, mixed $cnpj, mixed $cpf, mixed $rg) : void
     {
         self::start();
         date_default_timezone_set('America/Sao_Paulo');
-        $query = self::$db->prepare('INSERT IGNORE INTO fornecedores (id, empresa, nome, cnpj, cpf, rg, datahora_cadastro) VALUES (
+        $query = self::$db->prepare('INSERT IGNORE INTO fornecedores (id, empresa, nome, cnpj, datahora_cadastro) VALUES (
             null,
             :_empresa,
             :_nome,
             :_cnpj,
-            :_cpf,
-            :_rg,
             :_datahora_cadastro
         )');
         $query->bindValue(':_empresa', $empresa);
         $query->bindValue(':_nome', $nome);
         $query->bindValue(':_cnpj', $cnpj);
-        $query->bindValue(':_cpf', $cpf);
-        $query->bindValue(':_rg', $rg);
         $query->bindValue(':_datahora_cadastro', date('Y-m-d / H:i:s'));
-        if($empresa != null && $nome != null && $cnpj != null && $cpf == null && $rg == null)
-        {
-            $query->execute();
-        }
-        else if($empresa != null && $nome != null && $cnpj == null && $cpf != null && $rg != null)
+        $query->execute();
+    }
+
+    public static function addPhoneToProvider(string $proprietario, string $telefone) : void
+    {
+        self::start();
+        $query = self::$db->prepare('INSERT IGNORE INTO telefones (id, proprietario, telefone) VALUES (
+            null,
+            :_proprietario,
+            :_telefone
+        )');
+        $query->bindValue(':_proprietario', $proprietario);
+        $query->bindValue(':_telefone', $telefone);
+        if($proprietario != null && $telefone != null)
         {
             $query->execute();
         }
