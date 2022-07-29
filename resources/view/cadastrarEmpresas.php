@@ -23,24 +23,24 @@
 </head>
 <body class="bg-1">
     <main>
-    <aside class="position-absolute bottom-0 top-0 left-0 bg-2 py-3 sidebar">
-            <div class="my-5 lead">
+    <aside class="bg-2 sidebar">
+            <div class="lead">
                 <a class="text-decoration-none text-light" href="/dashboard">Inicio</a>
             </div>
-            <div class="my-5 lead">
+            <div class="lead">
                 <a class="text-decoration-none text-light" href="/cadastrar-empresas"><b>Cadastrar empresas</b></a>
             </div>
-            <div class="my-5 lead">
+            <div class="lead">
                 <a class="text-decoration-none text-light" href="/cadastrar-fornecedores">Cadastrar fornecedores</a>
             </div>
-            <div class="my-5 lead">
+            <div class="lead">
                 <a class="text-decoration-none text-light" href="/listar-fornecedores">Listar fornecedores</a>
             </div>
-            <div class="my-5 lead">
+            <div class="lead">
                 <a class="text-decoration-none text-light" href="/logout">Sair</a>
             </div>
         </aside>
-        <section>
+        <section class="content">
             <div class="d-grid justify-content-center mt-5 alert bg-3 text-light lead w-50 mx-auto">
                 <h2 class="display-6 mb-3">Cadastrar Empresa:</h2>
                 <form method="POST">

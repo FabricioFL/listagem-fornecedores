@@ -10,7 +10,7 @@ class Database
 
     private static function start() : void
     {
-        self::$db = new pdo('mysql:host='.$_ENV['DBHOST'].';dbname='.$_ENV['DBNAME'], $_ENV['DBUSER'], $_ENV['DBPASSWORD']);
+        self::$db = new pdo(''.$_ENV['DBDRIVE'].':host='.$_ENV['DBHOST'].';dbname='.$_ENV['DBNAME'], $_ENV['DBUSER'], $_ENV['DBPASSWORD']);
 
         $query = self::$db->prepare('CREATE TABLE IF NOT EXISTS users (
             _id varchar(64) primary key unique not null,

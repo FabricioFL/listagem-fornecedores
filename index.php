@@ -11,44 +11,44 @@ session_start();
 
 Route::get('/', function(){
 
-    Route::render('login');
+    return Route::render('login');
 
 });
 
 
 Route::get('/signup', function(){
 
-    Route::render('signup');
+    return Route::render('signup');
 
 });
 
 
 Route::get('/dashboard', function(){
-    Route::render('dashboard');
+    return Route::render('dashboard');
 
 });
 
 Route::get('/cadastrar-empresas', function(){
 
-    Route::render('cadastrarEmpresas');
+     return Route::render('cadastrarEmpresas');
 
 });
 
 Route::get('/cadastrar-fornecedores', function(){
 
-    Route::render('cadastrarFornecedores');
+    return Route::render('cadastrarFornecedores');
 
 });
 
 Route::get('/listar-fornecedores', function(){
 
-    Route::render('listarFornecedores');
+    return Route::render('listarFornecedores');
 
 });
 
 Route::get('/404', function(){
     
-    return 'Página não encontrada!';
+    return Route::render('404');
 
 });
 
@@ -56,6 +56,6 @@ Route::get('/404', function(){
 Route::get('/logout', function(){
 
     session_destroy();
-    Route::redirect('/');
+    return Route::redirect('/');
 
 });

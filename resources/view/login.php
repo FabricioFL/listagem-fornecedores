@@ -21,7 +21,7 @@
 </head>
 <body class="bg-1">
     <main>
-        <aside class="position-absolute bottom-0 top-0 left-0 bg-2 py-3 sidebar">
+        <aside class="bg-2 sidebar">
             <div class="mt-5 grid justify-content-evenly lead">
                 <a class="text-decoration-none text-light mb-3 mx-3" href="/"><b>Entrar</b></a>
             </div>

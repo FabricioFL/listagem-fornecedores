@@ -13,12 +13,6 @@
     background-color: #6c7db1;
 }
 
-.sidebar
-{
-    width: 20rem;
-    padding-left: 3rem;
-}
-
 .border-button
 {
     border-style: hidden;
@@ -27,4 +21,94 @@
 .bg-button
 {
     background: #4d77d1;
+}
+
+@media screen and (min-width: 1650px)
+{
+    .sidebar
+    {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        width: 20rem;
+        padding-left: 3rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+    .sidebar div
+    {
+        margin-top: 4rem;
+    }
+}
+
+@media screen and (min-width: 850px) and (max-width: 1649px)
+{
+    .sidebar
+    {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        width: 11rem;
+        padding-left: 2rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .sidebar div
+    {
+        font-size: 0.8rem;
+        margin-top: 3rem;
+    }
+}
+
+@media screen and (min-width: 530px) and (max-width: 849px)
+{
+    .sidebar
+    {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding-left: 2rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .sidebar div
+    {
+        font-size: 0.8rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 529px)
+{
+    .sidebar
+    {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .sidebar div
+    {
+        font-size: 0.7rem;
+        margin: 0.5rem;
+    }
 }

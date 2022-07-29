@@ -23,20 +23,20 @@
 </head>
 <body class="bg-1">
     <main>
-    <aside class="position-absolute bottom-0 top-0 left-0 bg-2 py-3 sidebar">
-            <div class="my-5 lead">
+    <aside class="bg-2 sidebar">
+            <div class="lead">
                 <a class="text-decoration-none text-light" href="/dashboard">Inicio</a>
             </div>
-            <div class="my-5 lead">
+            <div class="lead">
                 <a class="text-decoration-none text-light" href="/cadastrar-empresas">Cadastrar empresas</a>
             </div>
-            <div class="my-5 lead">
+            <div class="lead">
                 <a class="text-decoration-none text-light" href="/cadastrar-fornecedores">Cadastrar fornecedores</a>
             </div>
-            <div class="my-5 lead">
+            <div class="lead">
                 <a class="text-decoration-none text-light" href="/listar-fornecedores"><b>Listar fornecedores</b></a>
             </div>
-            <div class="my-5 lead">
+            <div class="lead">
                 <a class="text-decoration-none text-light" href="/logout">Sair</a>
             </div>
         </aside>
